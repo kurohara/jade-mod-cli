@@ -1,0 +1,20 @@
+{
+  "name": "jade-mod",
+  "version": "0.1.0",
+  "description": "wrapper cli for jade",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kurohara/jade-mod"
+  },
+  "bin": {
+    "jademod": "./bin/jademod.js"
+  },
+  "dependencies": {
+    "jade": "~1.9.2",
+    "yorequire": "git://github.com/kurohara/yorequire"
+  },
+  "devDependencies": {
+    "jade-php": "git://github.com/kurohara/jade-php"
+  }
+}
