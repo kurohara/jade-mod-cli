@@ -3,33 +3,18 @@
  * jademod.js
  */
 
-/**
- * Function to restore original functions.
- *
- */
-var clearJadeModifiers = function (obj) {
-  if (obj) {
-    // write back original functions.
-    [ "Parser", "Compiler", "Lexer" ].forEach(function(component) {
-      for (var key in obj[component].prototype) {
-        if (key.lastIndexOf('ex_', 0) === 0) {
-          obj[component].prototype[key.substring(3)] = obj[component].prototype[key];
-        }
-      }
-    });
-  }
-};
-
 var hookData = {
   jade: null,
   doModify: function(jade) {
     if (jade && this['modifiers']) {
-      clearJadeModifiers(jade);
       var modifiers = this['modifiers'];
       for (var index in modifiers) {
-        modifiers[index](jade);
+        modifiers[index].init(jade);
       }
     }
+  },
+  doRestore: function() {
+    // I think this is not needed to be implemented...
   }
 };
 
@@ -49,10 +34,10 @@ yor.setCB(function(name, orig_require, data) {
     if (! data.parse_orig) {
       data.parse_orig = module.Command.prototype.parse;
     }
-    module.Command.prototype.hookData = hookData;
+    module.Command.prototype.hookData = data;
     module.Command.prototype.parse = function(argv) {
       this.hookData.parse_orig.bind(this)(argv);
-      if (this.modifier) {
+      if (this.modifier /* from command line */) {
         // load each modifiers
         this.hookData.modifiers = [];
         for (var index in this.modifier) {
@@ -76,6 +61,4 @@ yor.enable(true);
 //
 // run the jade cli.
 require('../node_modules/jade/bin/jade');
-
-yor.enable(false);
 

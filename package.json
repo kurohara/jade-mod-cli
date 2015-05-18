@@ -1,20 +1,44 @@
 {
-  "name": "jade-mod-cli",
+  "name": "jade-mod",
+  "description": "jade cli with modifier attachable.",
   "version": "0.1.0",
-  "description": "wrapper cli for jade",
-  "license": "MIT",
+  "homepage": "https://github.com/kurohara/jade-mod-cli",
+  "author": {
+    "name": "kurohara",
+    "email": "kurohara@yk.rim.or.jp"
+  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kurohara/jade-mod-cli"
+    "url": "https://github.com/kurohara/jade-mod-cli.git"
   },
+  "bugs": {
+    "url": "https://github.com/kurohara/jade-mod-cli/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/kurohara/jade-mod-cli/blob/master/LICENSE-MIT"
+    }
+  ],
+  "preferGlobal": true,
   "bin": {
     "jademod": "./bin/jademod.js"
   },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt nodeunit"
+  },
   "dependencies": {
-    "jade": "~1.9.2",
+    "jade": "^1.9.2",
     "yorequire": "git://github.com/kurohara/yorequire"
   },
   "devDependencies": {
-    "jade-php": "git://github.com/kurohara/jade-php"
-  }
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "keywords": []
 }
