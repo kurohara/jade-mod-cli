@@ -1,7 +1,7 @@
 {
   "name": "jade-mod",
   "description": "jade cli with modifier attachable.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/kurohara/jade-mod-cli",
   "author": {
     "name": "kurohara",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "jade": "^1.9.2",
-    "yorequire": "git://github.com/kurohara/yorequire"
+    "yorequire": "^1.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
