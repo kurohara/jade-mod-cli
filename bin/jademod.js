@@ -21,7 +21,7 @@ var hookData = {
 //
 // replace 'require' function.
 var yor = require('yorequire');
-yor.setCB(function(name, orig_require, data) {
+yor.set(function(name, orig_require, data) {
   var module = orig_require(name);
   if (name === 'jade' || name === '../') {
     data.jade = module;
