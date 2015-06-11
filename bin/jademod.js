@@ -18,6 +18,18 @@ var hookData = {
   }
 };
 
+function tryload(o_require, modname) {
+  var trylist = [ modname, process.cwd() + "/node_modules/" + modname, "../node_modules/" + modname ];
+  for (var i in trylist) {
+    try {
+      var mod = o_require(trylist[i]);
+      if (mod) { return mod; }
+    } catch (e) {
+    }
+  }
+  return null;
+}
+
 //
 // replace 'require' function.
 var yor = require('yorequire');
@@ -41,9 +53,9 @@ yor.set(function(name, orig_require, data) {
         // load each modifiers
         this.hookData.modifiers = [];
         for (var index in this.modifier) {
-          var modobj = orig_require(this.modifier[index]);
+          var modobj = tryload(orig_require, this.modifier[index]);
           if (modobj) {
-            this.hookData.modifiers.push(orig_require(this.modifier[index]));
+            this.hookData.modifiers.push(modobj);
           } else {
             console.log("Failed to load modifier[" + this.modifier[index] + "].");
           }
