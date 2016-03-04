@@ -72,5 +72,5 @@ yor.enable(true);
 
 //
 // run the jade cli.
-require('../node_modules/jade/bin/jade');
+require('jade/bin/jade');
 
